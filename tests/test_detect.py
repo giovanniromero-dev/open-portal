@@ -1,4 +1,4 @@
-from dockportal import detect
+from open_portal import detect
 
 
 def test_is_project_dir_true_for_git(tmp_path):

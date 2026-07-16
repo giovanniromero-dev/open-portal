@@ -1,28 +1,28 @@
-# dockportal
+# open-portal
 
-A terminal-based project switcher. Keep your favorite projects one command away — jump straight to them, open them in your editor, and let dockportal auto-detect their Git branch and language.
+A terminal-based project switcher. Keep your favorite projects one command away — jump straight to them, open them in your editor, and let open-portal auto-detect their Git branch and language.
 
 ```
-    ____  ____  ________ __ ____  ____  ____  _________    __
-   / __ \/ __ \/ ____/ //_// __ \/ __ \/ __ \/_  __/   |  / /
-  / / / / / / / /   / ,<  / /_/ / / / / /_/ / / / / /| | / /
- / /_/ / /_/ / /___/ /| |/ ____/ /_/ / _, _/ / / / ___ |/ /___
-/_____/\____/\____/_/ |_/_/    \____/_/ |_| /_/ /_/  |_/_____/
+   ____  ____  _______   __   ____  ____  ____  _________    __
+  / __ \/ __ \/ ____/ | / /  / __ \/ __ \/ __ \/_  __/   |  / /
+ / / / / /_/ / __/ /  |/ /  / /_/ / / / / /_/ / / / / /| | / /
+/ /_/ / ____/ /___/ /|  /  / ____/ /_/ / _, _/ / / / ___ |/ /___
+\____/_/   /_____/_/ |_/  /_/    \____/_/ |_| /_/ /_/  |_/_____/
 ```
 
 ## Features
 
-- **Instant switching** — `portal open <name>` opens any tracked project in your configured editor
-- **Interactive TUI** — run bare `portal` for an arrow-key browser with search, add, delete and favorite shortcuts
+- **Instant switching** — `open-portal <name>` opens any tracked project in your configured editor, no subcommand needed
+- **Interactive TUI** — run bare `open-portal` for an arrow-key browser with search, add, delete and favorite shortcuts
 - **Auto-detection** — Git branch and primary language are detected automatically when you add a project
-- **Directory scanning** — `portal scan <dir>` walks a folder and picks up every project it finds
+- **Directory scanning** — `open-portal scan <dir>` walks a folder and picks up every project it finds
 - **Favorites & recents** — pin the projects you use most, or jump back into whatever you opened last
 - **Cross-platform** — pure Python, works the same on Windows and Linux
 
 ## Install
 
 ```
-pipx install git+https://github.com/giovanniromero-dev/dockportal.git
+pipx install git+https://github.com/giovanniromero-dev/open-portal.git
 ```
 
 `pip install git+...` or `uv tool install git+...` work the same way. Requires Python 3.9+ and Git.
@@ -30,17 +30,18 @@ pipx install git+https://github.com/giovanniromero-dev/dockportal.git
 ## Usage
 
 ```
-portal                    # interactive TUI (arrows to move, enter to open)
-portal list                # list saved projects
-portal open <name>         # open a project in your editor
-portal add <path>          # track a new project
-portal remove <name>       # stop tracking a project
-portal favorite <name>     # toggle favorite status
-portal search <query>      # search projects by name
-portal recent              # show recently opened projects
-portal scan <directory>    # find and add every project under a directory
-portal info <name>         # show details for a project
-portal editor <command>    # set the default editor (code, cursor, zed, ...)
+open-portal <name>           # shortcut: open a project directly
+open-portal                  # interactive TUI (arrows to move, enter to open)
+open-portal list              # list saved projects
+open-portal open <name>       # open a project in your editor
+open-portal add <path>        # track a new project
+open-portal remove <name>     # stop tracking a project
+open-portal favorite <name>   # toggle favorite status
+open-portal search <query>    # search projects by name
+open-portal recent            # show recently opened projects
+open-portal scan <directory>  # find and add every project under a directory
+open-portal info <name>       # show details for a project
+open-portal editor <command>  # set the default editor (code, cursor, zed, ...)
 ```
 
 ### TUI shortcuts
@@ -57,7 +58,7 @@ portal editor <command>    # set the default editor (code, cursor, zed, ...)
 
 ## Configuration
 
-Projects are stored in `~/.dockportal/config.json`. A project is recognized by common markers: `.git`, `package.json`, `Cargo.toml`, `go.mod`, `pom.xml`, `composer.json`, `pyproject.toml`, `requirements.txt`.
+Projects are stored in `~/.open-portal/config.json`. A project is recognized by common markers: `.git`, `package.json`, `Cargo.toml`, `go.mod`, `pom.xml`, `composer.json`, `pyproject.toml`, `requirements.txt`.
 
 ## Development
 

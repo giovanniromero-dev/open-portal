@@ -1,11 +1,11 @@
 import pytest
 
-from dockportal import config as cfg
+from open_portal import config as cfg
 
 
 @pytest.fixture(autouse=True)
 def isolated_config(tmp_path, monkeypatch):
-    config_dir = tmp_path / ".dockportal"
+    config_dir = tmp_path / ".open-portal"
     monkeypatch.setattr(cfg, "CONFIG_DIR", config_dir)
     monkeypatch.setattr(cfg, "CONFIG_FILE", config_dir / "config.json")
 

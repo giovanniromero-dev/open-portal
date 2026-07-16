@@ -5,7 +5,7 @@ from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 
-CONFIG_DIR = Path.home() / ".dockportal"
+CONFIG_DIR = Path.home() / ".open-portal"
 CONFIG_FILE = CONFIG_DIR / "config.json"
 
 

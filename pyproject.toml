@@ -1,5 +1,5 @@
 [project]
-name = "dockportal"
+name = "open-portal"
 version = "0.1.0"
 description = "Manage your favorite projects from the terminal"
 readme = "README.md"
@@ -10,7 +10,7 @@ dependencies = [
 ]
 
 [project.scripts]
-portal = "dockportal.cli:app"
+open-portal = "open_portal.cli:main"
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
@@ -20,7 +20,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/dockportal"]
+packages = ["src/open_portal"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

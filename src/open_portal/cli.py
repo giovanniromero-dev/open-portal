@@ -6,10 +6,10 @@ from pathlib import Path
 
 import typer
 
-from dockportal import config as cfg
-from dockportal import detect
-from dockportal.banner import BANNER
-from dockportal.editor import EditorNotFoundError, open_in_editor
+from open_portal import config as cfg
+from open_portal import detect
+from open_portal.banner import BANNER
+from open_portal.editor import EditorNotFoundError, open_in_editor
 
 if sys.platform == "win32":
     try:
@@ -18,7 +18,20 @@ if sys.platform == "win32":
     except AttributeError:
         pass
 
-app = typer.Typer(help="dockportal - manage your favorite projects from the terminal")
+app = typer.Typer(help="open-portal - manage your favorite projects from the terminal")
+
+COMMANDS = {
+    "list",
+    "open",
+    "add",
+    "remove",
+    "favorite",
+    "search",
+    "recent",
+    "scan",
+    "info",
+    "editor",
+}
 
 
 def _time_ago(iso: str | None) -> str:
@@ -51,10 +64,10 @@ def _describe(project: cfg.Project) -> str:
 
 
 @app.callback(invoke_without_command=True)
-def main(ctx: typer.Context):
+def root(ctx: typer.Context):
     if ctx.invoked_subcommand is None:
         typer.echo(BANNER)
-        from dockportal.tui import run_tui
+        from open_portal.tui import run_tui
 
         run_tui()
 
@@ -64,7 +77,7 @@ def list():
     """List saved projects."""
     config = cfg.load()
     if not config.projects:
-        typer.echo("No projects yet. Add one with: portal add <path>")
+        typer.echo("No projects yet. Add one with: open-portal add <path>")
         return
     projects = cfg.sorted_projects(config)
     favorites = [p for p in projects if p.favorite]
@@ -94,7 +107,7 @@ def open(name: str):
             typer.echo(f"Multiple matches for '{name}': {', '.join(p.name for p in matches)}")
             raise typer.Exit(code=1)
         else:
-            typer.echo(f"No project named '{name}'. Try: portal add <path>")
+            typer.echo(f"No project named '{name}'. Try: open-portal add <path>")
             raise typer.Exit(code=1)
     editor = project.editor or config.default_editor
     try:
@@ -139,7 +152,7 @@ def remove(name: str):
     if cfg.find(config, name) is None:
         typer.echo(f"No project named '{name}'.")
         raise typer.Exit(code=1)
-    if not typer.confirm(f"Remove '{name}' from dockportal?"):
+    if not typer.confirm(f"Remove '{name}' from open-portal?"):
         raise typer.Exit(code=0)
     cfg.remove(config, name)
     cfg.save(config)
@@ -186,12 +199,12 @@ def recent(limit: int = 10):
 @app.command()
 def scan(directory: str):
     """Scan a directory for projects."""
-    root = Path(directory).expanduser().resolve()
-    if not root.exists() or not root.is_dir():
+    root_dir = Path(directory).expanduser().resolve()
+    if not root_dir.exists() or not root_dir.is_dir():
         typer.echo(f"'{directory}' is not a valid directory.")
         raise typer.Exit(code=1)
     config = cfg.load()
-    found = detect.find_projects(root)
+    found = detect.find_projects(root_dir)
     added, skipped = 0, 0
     for path in found:
         if cfg.find(config, path.name) is not None:
@@ -235,5 +248,12 @@ def editor(command: str):
     typer.echo(f"Default editor set to '{command}'.")
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Entry point: `open-portal <name>` opens a project directly, without needing `open`."""
+    if len(sys.argv) > 1 and not sys.argv[1].startswith("-") and sys.argv[1] not in COMMANDS:
+        sys.argv.insert(1, "open")
     app()
+
+
+if __name__ == "__main__":
+    main()

@@ -8,9 +8,9 @@ from textual.containers import Vertical
 from textual.screen import ModalScreen
 from textual.widgets import Footer, Header, Input, Label, ListItem, ListView
 
-from dockportal import config as cfg
-from dockportal import detect
-from dockportal.editor import EditorNotFoundError, open_in_editor
+from open_portal import config as cfg
+from open_portal import detect
+from open_portal.editor import EditorNotFoundError, open_in_editor
 
 
 class InputScreen(ModalScreen[str | None]):
@@ -89,8 +89,8 @@ class ProjectListItem(ListItem):
         self.project = project
 
 
-class DockPortalApp(App[None]):
-    TITLE = "DockPortal"
+class OpenPortalApp(App[None]):
+    TITLE = "open-portal"
 
     CSS = """
     ListView {
@@ -214,4 +214,4 @@ class DockPortalApp(App[None]):
 
 
 def run_tui() -> None:
-    DockPortalApp().run()
+    OpenPortalApp().run()
