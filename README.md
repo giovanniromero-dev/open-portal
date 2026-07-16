@@ -3,16 +3,18 @@
 A terminal-based project switcher. Keep your favorite projects one command away — jump straight to them, open them in your editor, and let open-portal auto-detect their Git branch and language.
 
 ```
-   ____  ____  _______   __   ____  ____  ____  _________    __
-  / __ \/ __ \/ ____/ | / /  / __ \/ __ \/ __ \/_  __/   |  / /
- / / / / /_/ / __/ /  |/ /  / /_/ / / / / /_/ / / / / /| | / /
-/ /_/ / ____/ /___/ /|  /  / ____/ /_/ / _, _/ / / / ___ |/ /___
-\____/_/   /_____/_/ |_/  /_/    \____/_/ |_| /_/ /_/  |_/_____/
+ ___________ _____ _   _  ______ ___________ _____ ___   _
+|  _  | ___ \  ___| \ | | | ___ \  _  | ___ \_   _/ _ \ | |
+| | | | |_/ / |__ |  \| | | |_/ / | | | |_/ / | |/ /_\ \| |
+| | | |  __/|  __|| . ` | |  __/| | | |    /  | ||  _  || |
+\ \_/ / |   | |___| |\  | | |   \ \_/ / |\ \  | || | | || |____
+ \___/\_|   \____/\_| \_/ \_|    \___/\_| \_| \_/\_| |_/\_____/
 ```
 
 ## Features
 
 - **Instant switching** — `open-portal <name>` opens any tracked project in your configured editor, no subcommand needed
+- **Zero-friction adding** — `cd` into any project and run `open-portal add .` (or just `open-portal add`) to track it
 - **Interactive TUI** — run bare `open-portal` for an arrow-key browser with search, add, delete and favorite shortcuts
 - **Auto-detection** — Git branch and primary language are detected automatically when you add a project
 - **Directory scanning** — `open-portal scan <dir>` walks a folder and picks up every project it finds
