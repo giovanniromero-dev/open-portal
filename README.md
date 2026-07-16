@@ -34,7 +34,7 @@ open-portal <name>           # shortcut: open a project directly
 open-portal                  # interactive TUI (arrows to move, enter to open)
 open-portal list              # list saved projects
 open-portal open <name>       # open a project in your editor
-open-portal add <path>        # track a new project
+open-portal add <path>        # track a new project (defaults to the current directory: open-portal add .)
 open-portal remove <name>     # stop tracking a project
 open-portal favorite <name>   # toggle favorite status
 open-portal search <query>    # search projects by name

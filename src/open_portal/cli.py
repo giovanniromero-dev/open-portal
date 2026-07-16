@@ -121,8 +121,8 @@ def open(name: str):
 
 
 @app.command()
-def add(path: str):
-    """Add a new project."""
+def add(path: str = typer.Argument(".")):
+    """Add a new project (defaults to the current directory)."""
     resolved = Path(path).expanduser().resolve()
     if not resolved.exists() or not resolved.is_dir():
         typer.echo(f"'{path}' is not a valid directory.")
