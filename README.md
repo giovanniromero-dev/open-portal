@@ -22,7 +22,7 @@ A terminal-based project switcher. Keep your favorite projects one command away 
 ## Install
 
 ```
-pipx install git+https://github.com/giovannidevelopments/dockportal.git
+pipx install git+https://github.com/giovanniromero-dev/dockportal.git
 ```
 
 `pip install git+...` or `uv tool install git+...` work the same way. Requires Python 3.9+ and Git.
